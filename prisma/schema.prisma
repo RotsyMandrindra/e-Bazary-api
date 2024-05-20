@@ -11,4 +11,44 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Car {
+    productId Int @id @default(autoincrement())
+    productName String 
+    description String 
+    brand String 
+    model String 
+    price Float
+    color String 
+    motorType String 
+    power String 
+    placeNumber Int
+    status Boolean
+    type String 
+}
+
+model Images {
+    imagesId Int @id @default(autoincrement()) 
+    productId Int 
+    url String 
+}
+
+model Admin {
+    userAdminId Int @id @default(autoincrement())
+    email String  
+    name String  
+    password String  
+}
+
+model Appointment {
+    appointmentId Int @id @default(autoincrement())
+    username String 
+    firstname String  
+    email String 
+    contact String 
+    appointmentDate DateTime @default(now())
+    status Boolean
+    userAdminId Int
 }

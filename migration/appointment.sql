@@ -6,5 +6,5 @@ CREATE TABLE IF NOT EXISTS appointment(
     contact varchar(50) not null,
     appointment_date TIMESTAMP not null,
     status boolean not null,
-    user_admin_id serial references user_admin(user_admin_id)
+    user_admin_id int references user_admin(user_admin_id)
 );
