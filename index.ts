@@ -2,7 +2,7 @@ import express, {Request, Response} from 'express';
 import cors from 'cors';
 import { createAdmin } from './Controller/admin';
 import { getAllAdmin } from './Controller/admin';
-import { createCar } from './Controller/car';
+import { createCar, getAllCar } from './Controller/car';
 import { configDotenv } from 'dotenv';
 const app = express();
 const PORT = 5000;
@@ -20,6 +20,7 @@ app.use(
 app.post('/admin', createAdmin);
 app.get('/admin',getAllAdmin);
 app.post('/car', createCar);
+app.get('/car', getAllCar);
 
 
 app.listen(PORT,()=>{

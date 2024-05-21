@@ -27,3 +27,14 @@ export const createCar = async (req: Request, res: Response) => {
     });
     return res.json(carData);
 }
+
+export const getAllCar = async(req: Request, res: Response) =>{
+    try{
+        const carData = await prisma.car.findFirst();
+        res.json({carData})
+    }catch(error){
+        res.status(500).json({ error: 'Could not find car'})
+    }
+}
+
+export default car;
