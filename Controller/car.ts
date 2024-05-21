@@ -54,4 +54,22 @@ export const deleteCar = async (req: Request, res: Response) => {
     }
   };
 
+  export const updateCar = async (req: Request, res: Response) => {
+    const carId = parseInt(req.params.id, 10);
+    const car = req.body;
+    try {
+      const updateCar = await prisma.car.update({
+        where: {
+          productId: carId,
+        },
+        data: car
+      });
+  
+      res.json({ message: `Car with ID ${carId} updated successfully` });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "An error occurred while updating the car" });
+    }
+  };
+  
 export default car;

@@ -2,7 +2,7 @@ import express, {Request, Response} from 'express';
 import cors from 'cors';
 import { createAdmin } from './Controller/admin';
 import { getAllAdmin } from './Controller/admin';
-import { createCar, deleteCar, getAllCar } from './Controller/car';
+import { createCar, deleteCar, getAllCar, updateCar } from './Controller/car';
 import { configDotenv } from 'dotenv';
 import { createImage, deleteImage, getAllImage } from './Controller/image';
 const app = express();
@@ -26,6 +26,7 @@ app.get('/image', getAllImage);
 app.post('/image', createImage);
 app.delete('/car', deleteCar);
 app.delete('/image', deleteImage);
+app.put('/car', updateCar);
 
 
 app.listen(PORT,()=>{
