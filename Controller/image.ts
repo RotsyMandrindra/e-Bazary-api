@@ -43,6 +43,24 @@ export const deleteImage = async (req: Request, res: Response) => {
       console.error(error);
       res.status(500).json({ message: "An error occurred while deleting the image" });
     }
-  };
+};
+
+export const updateImage = async (req: Request, res: Response) => {
+    const imageId = parseInt(req.params.id, 10);
+    const Image = req.body;
+    try {
+      const updateImage = await prisma.images.update({
+        where: {
+          imagesId: imageId,
+        },
+        data: Image
+      });
+  
+      res.json({ message: `Image with ID ${imageId} updated successfully` });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "An error occurred while updating the image" });
+    }
+};
 
 export default Image;

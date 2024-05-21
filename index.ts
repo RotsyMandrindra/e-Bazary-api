@@ -4,7 +4,7 @@ import { createAdmin } from './Controller/admin';
 import { getAllAdmin } from './Controller/admin';
 import { createCar, deleteCar, getAllCar, updateCar } from './Controller/car';
 import { configDotenv } from 'dotenv';
-import { createImage, deleteImage, getAllImage } from './Controller/image';
+import { createImage, deleteImage, getAllImage, updateImage } from './Controller/image';
 const app = express();
 const PORT = 5000;
 
@@ -27,6 +27,7 @@ app.post('/image', createImage);
 app.delete('/car', deleteCar);
 app.delete('/image', deleteImage);
 app.put('/car', updateCar);
+app.put('/image', updateImage);
 
 
 app.listen(PORT,()=>{

@@ -54,7 +54,7 @@ export const deleteCar = async (req: Request, res: Response) => {
     }
   };
 
-  export const updateCar = async (req: Request, res: Response) => {
+export const updateCar = async (req: Request, res: Response) => {
     const carId = parseInt(req.params.id, 10);
     const car = req.body;
     try {
@@ -70,6 +70,6 @@ export const deleteCar = async (req: Request, res: Response) => {
       console.error(error);
       res.status(500).json({ message: "An error occurred while updating the car" });
     }
-  };
+};
   
 export default car;
