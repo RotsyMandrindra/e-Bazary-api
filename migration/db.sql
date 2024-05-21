@@ -1,5 +1,0 @@
-DROP DATABASE IF EXISTS vaika;
-
-CREATE DATABASE vaika;
-
-\c vaika

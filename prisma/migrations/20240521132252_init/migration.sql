@@ -45,6 +45,13 @@ CREATE TABLE "Appointment" (
     "appointmentDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "status" BOOLEAN NOT NULL,
     "userAdminId" INTEGER NOT NULL,
+    "adminId" INTEGER NOT NULL,
 
     CONSTRAINT "Appointment_pkey" PRIMARY KEY ("appointmentId")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Appointment_adminId_key" ON "Appointment"("adminId");
+
+-- AddForeignKey
+ALTER TABLE "Appointment" ADD CONSTRAINT "Appointment_adminId_fkey" FOREIGN KEY ("adminId") REFERENCES "Admin"("userAdminId") ON DELETE RESTRICT ON UPDATE CASCADE;
