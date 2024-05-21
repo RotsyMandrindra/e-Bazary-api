@@ -6,5 +6,17 @@ const amdin = express();
 amdin.use(express.json());
 
 export const createAdmin = async (req: Request, res: Response) =>{
-    const {} = req.body;
+    const {email,name,password} = req.body;
+
+    const user_admin = await prisma.admin.create({
+        data:{
+            email: email,
+            name: name,
+            password: password,
+        }
+    })
+
+    res.json({user_admin});
 }
+
+export default amdin;
