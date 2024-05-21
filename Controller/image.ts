@@ -28,4 +28,21 @@ export const getAllImage = async(req: Request, res: Response) =>{
     }
 }
 
+export const deleteImage = async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id, 10);
+  
+    try {
+      const deleteImage = await prisma.images.delete({
+        where: {
+            imagesId: id,
+        },
+      });
+  
+      res.json({ message: `Image with id ${id} deleted successfully` });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "An error occurred while deleting the image" });
+    }
+  };
+
 export default Image;
