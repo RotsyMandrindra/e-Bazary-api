@@ -2,8 +2,12 @@ import express, {Request, Response} from 'express';
 import cors from 'cors';
 import { createAdmin } from './Controller/admin';
 import { getAllAdmin } from './Controller/admin';
+import { createCar, getAllCar } from './Controller/car';
+import { configDotenv } from 'dotenv';
 const app = express();
 const PORT = 5000;
+
+configDotenv({ path: '.env' });
 
 app.use(
     cors({
@@ -15,6 +19,8 @@ app.use(
 
 app.post('/admin', createAdmin);
 app.get('/admin',getAllAdmin);
+app.post('/car', createCar);
+app.get('/car', getAllCar);
 
 
 app.listen(PORT,()=>{
