@@ -37,4 +37,21 @@ export const getAllCar = async(req: Request, res: Response) =>{
     }
 }
 
+export const deleteCar = async (req: Request, res: Response) => {
+    const carId = parseInt(req.params.id, 10);
+  
+    try {
+      const deleteCar = await prisma.car.delete({
+        where: {
+            productId: carId,
+        },
+      });
+  
+      res.json({ message: `Car with ID ${carId} deleted successfully` });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "An error occurred while deleting the car" });
+    }
+  };
+
 export default car;
