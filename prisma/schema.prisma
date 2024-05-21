@@ -40,6 +40,7 @@ model Admin {
     email String  
     name String  
     password String  
+    appointment Appointment[]
 }
 
 model Appointment {
@@ -51,4 +52,6 @@ model Appointment {
     appointmentDate DateTime @default(now())
     status Boolean
     userAdminId Int
+    admin Admin @relation(fields: [adminId], references: [userAdminId])
+    adminId Int     @unique
 }
