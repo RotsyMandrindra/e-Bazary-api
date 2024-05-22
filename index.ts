@@ -7,7 +7,7 @@ import { configDotenv } from 'dotenv';
 import { createImage, deleteImage, getAllImage, updateImage } from './Controller/image';
 const app = express();
 const PORT = 5000;
-
+app.use(express.json())
 configDotenv({ path: '.env' });
 
 app.use(
