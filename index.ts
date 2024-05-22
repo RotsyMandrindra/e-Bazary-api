@@ -1,13 +1,15 @@
-import express, {Request, Response} from 'express';
+import express from 'express';
 import cors from 'cors';
 import { createAdmin } from './Controller/admin';
 import { getAllAdmin } from './Controller/admin';
 import { createCar, deleteCar, getAllCar, updateCar } from './Controller/car';
-import { configDotenv } from 'dotenv';
 import { createImage, deleteImage, getAllImage, updateImage } from './Controller/image';
+import { configDotenv } from 'dotenv';
+
 const app = express();
 const PORT = 5000;
 app.use(express.json())
+
 configDotenv({ path: '.env' });
 
 app.use(
@@ -16,7 +18,6 @@ app.use(
       methods: ["GET", "POST", "PUT", "DELETE"],
     })
   );
-
 
 app.post('/admin', createAdmin);
 app.get('/admin',getAllAdmin);
