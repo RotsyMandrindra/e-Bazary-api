@@ -1,11 +1,13 @@
-import express, {Request, Response} from 'express';
+import express from 'express';
 import cors from 'cors';
 import { createAdmin } from './Controller/admin';
 import { getAllAdmin } from './Controller/admin';
 import { createCar, getAllCar } from './Controller/car';
 import { configDotenv } from 'dotenv';
+
 const app = express();
 const PORT = 5000;
+app.use(express.json());
 
 configDotenv({ path: '.env' });
 
