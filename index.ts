@@ -6,10 +6,6 @@ import { createCar, deleteCar, getAllCar, updateCar } from './Controller/car';
 import { createImage, deleteImage, getAllImage, updateImage } from './Controller/image';
 import { configDotenv } from 'dotenv';
 
-
-
-
-
 const app = express();
 const PORT = 5000;
 app.use(express.json())
@@ -22,7 +18,6 @@ app.use(
       methods: ["GET", "POST", "PUT", "DELETE"],
     })
   );
-
 
 app.post('/admin', createAdmin);
 app.get('/admin',getAllAdmin);
