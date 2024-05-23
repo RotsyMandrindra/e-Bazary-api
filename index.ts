@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { createAdmin } from './Controller/admin';
+import { createAdmin, loginAdmin } from './Controller/admin';
 import { getAllAdmin } from './Controller/admin';
 import { createCar, deleteCar, getAllCar, updateCar } from './Controller/car';
 import { createImage, deleteImage, getAllImage, updateImage } from './Controller/image';
@@ -19,8 +19,9 @@ app.use(
     })
   );
 
-app.post('/admin', createAdmin);
+app.post('/admin/register', createAdmin);
 app.get('/admin',getAllAdmin);
+app.post('/admin/login', loginAdmin)
 app.post('/car', createCar);
 app.get('/car', getAllCar);
 app.get('/image', getAllImage);

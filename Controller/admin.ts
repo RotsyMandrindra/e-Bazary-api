@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import express, { Request, Response } from "express";
 import bcrypt from 'bcrypt';
-import { error } from "console";
+import Admin from "../Model/InterfaceAdmin";
 
 const prisma = new PrismaClient(
     { log : ["query"]}
@@ -38,6 +38,31 @@ export const createAdmin = async (req: Request, res: Response) =>{
         res.json({ user_admin });
        
 }
+
+
+export const loginAdmin = async(req: Request, res: Response)=>{
+    const {email, password } = req.body;
+
+    const admin = await prisma.admin.findFirst({
+        where:{
+            email : email
+        }
+    })
+
+    if(!admin){
+        return res.status(401).json({ error: "Email or password doesn't exist"});
+    }
+
+    const typedAdmin = admin as unknown as Admin;
+
+    const passwordMatch = await bcrypt.compare(password, typedAdmin.password);
+
+    if (!passwordMatch) {
+      return res.status(401).json({ error: "incorect password" });
+    }
+
+    res.json({admin})
+} 
 
 
 export const getAllAdmin = async (req: Request, res: Response) =>{
