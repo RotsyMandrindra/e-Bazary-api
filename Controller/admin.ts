@@ -2,17 +2,29 @@ import { PrismaClient } from "@prisma/client";
 import express, { Request, Response } from "express";
 import bcrypt from 'bcrypt';
 import Admin from "../Model/InterfaceAdmin";
+import { z } from 'zod';
 
 const prisma = new PrismaClient(
     { log : ["query"]}
 );
 const admin = express();
 
+const loginSchema = z.object({
+    email: z.string().email(),
+    name: z.string().min(3),
+    password: z.string().min(8, "Password must be at least 8 characters long")
+  });
+
 admin.use(express.json());
 
 
 export const createAdmin = async (req: Request, res: Response) =>{
-    const { email,name,password } = req.body;
+    const parseResult = loginSchema.safeParse(req.body);
+
+    if (!parseResult.success) {
+      return res.status(400).json({ error: parseResult.error.errors });
+    }
+    const { email,name,password } = parseResult.data;
    
     if(!email || !name || !password){
      return res.status(400).json({ error: "Admin must contains email, name, password"})
@@ -41,7 +53,8 @@ export const createAdmin = async (req: Request, res: Response) =>{
 
 
 export const loginAdmin = async(req: Request, res: Response)=>{
-    const {email, password } = req.body;
+   
+   const { email, password } = req.body;
 
     const admin = await prisma.admin.findFirst({
         where:{
