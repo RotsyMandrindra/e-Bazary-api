@@ -54,5 +54,4 @@ model Appointment {
     contact String 
     appointmentDate DateTime @default(now())
     status Boolean
-    userAdminId Int
 }
