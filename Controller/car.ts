@@ -1,11 +1,12 @@
+
 import { PrismaClient } from "@prisma/client";
-import car from '../Model/InterfaceCar';
 import express, { Request, Response } from "express";
 import Car from "../Model/InterfaceCar";
 
 const prisma = new PrismaClient();
 const car = express();
 car.use(express.json());
+
 
 
 
@@ -41,33 +42,39 @@ export const createCar = async (req: Request, res: Response) => {
     return res.json(carData);
 }
 
-export const getAllCar = async(req: Request, res: Response) =>{
-    try{
-        const carData = await prisma.car.findFirst();
-        res.json({carData})
-    }catch(error){
-        res.status(500).json({ error: 'Could not find car'})
-    }
-}
+
+
+
+export const getAllCar = async (req: Request, res: Response) => {
+  try {
+    const carData = await prisma.car.findMany();
+    res.json(carData.map((car) => ({ ...car, id: car.productId })));
+  } catch (error) {
+    res.status(500).json({ error: "Could not found car" });
+  }
+};
 
 export const deleteCar = async (req: Request, res: Response) => {
-    const carId = parseInt(req.params.id, 10);
-  
-    try {
-      const deleteCar = await prisma.car.delete({
-        where: {
-            productId: carId,
-        },
-      });
-  
-      res.json({ message: `Car with ID ${carId} deleted successfully` });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "An error occurred while deleting the car" });
-    }
-  };
+  const carId = parseInt(req.params.id, 10);
+
+  try {
+    const deleteCar = await prisma.car.delete({
+      where: {
+        productId: carId,
+      },
+    });
+
+    res.json({ message: `Car with ID ${carId} deleted successfully` });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "An error occurred while deleting the car" });
+  }
+};
 
 export const updateCar = async (req: Request, res: Response) => {
+
     const carId = parseInt(req.params.id, 10);
     const {ImageId,productName,
       description,
@@ -106,6 +113,8 @@ export const updateCar = async (req: Request, res: Response) => {
       console.error(error);
       res.status(500).json({ message: "An error occurred while updating the car" });
     }
+
+
 };
-  
+
 export default car;
