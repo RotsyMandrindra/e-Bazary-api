@@ -16,6 +16,8 @@ datasource db {
 
 model Car {
     productId Int @id @default(autoincrement())
+    image Images  @relation(fields: [imageId], references: [id])
+    imageId Int
     productName String 
     description String 
     brand String 
@@ -30,17 +32,18 @@ model Car {
 }
 
 model Images {
-    imagesId Int @id @default(autoincrement()) 
+    id Int @id @default(autoincrement()) 
     productId Int 
     url String 
+    car Car[]
 }
 
 model Admin {
     userAdminId Int @id @default(autoincrement())
     email String  @unique
     name String  
-    password String  
-    appointment Appointment[]
+    password String
+    urlImage String?
 }
 
 model Appointment {
@@ -52,6 +55,4 @@ model Appointment {
     appointmentDate DateTime @default(now())
     status Boolean
     userAdminId Int
-    admin Admin @relation(fields: [adminId], references: [userAdminId])
-    adminId Int     @unique
 }
