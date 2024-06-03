@@ -12,7 +12,8 @@ const admin = express();
 const loginSchema = z.object({
     email: z.string().email(),
     name: z.string().min(3),
-    password: z.string().min(8, "Password must be at least 8 characters long")
+    password: z.string().min(8, "Password must be at least 8 characters long"),
+    urlImage: z.string().min(10)
   });
 
 admin.use(express.json());
@@ -24,7 +25,7 @@ export const createAdmin = async (req: Request, res: Response) =>{
     if (!parseResult.success) {
       return res.status(400).json({ error: parseResult.error.errors });
     }
-    const { email,name,password } = parseResult.data;
+    const { email,name,password, urlImage } = parseResult.data;
    
     if(!email || !name || !password){
      return res.status(400).json({ error: "Admin must contains email, name, password"})
@@ -44,6 +45,7 @@ export const createAdmin = async (req: Request, res: Response) =>{
             data: {
                 email:email,
                 name:name,
+                urlImage : urlImage,
                 password:hashedPassword,
             },
         });

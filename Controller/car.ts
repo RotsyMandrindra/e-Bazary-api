@@ -1,29 +1,42 @@
 import { PrismaClient } from "@prisma/client";
+import car from '../Model/InterfaceCar';
 import express, { Request, Response } from "express";
+import Car from "../Model/InterfaceCar";
 
 const prisma = new PrismaClient();
 const car = express();
 car.use(express.json());
 
-interface car {
-    productName: string,
-    description: string,
-    brand: string,
-    model: string,
-    price: number,
-    color: string,
-    motorType: string,
-    power: string,
-    placeNumber: number,
-    status: boolean,
-    type: string
-};
+
 
 export const createCar = async (req: Request, res: Response) => {
-    const car: car = req.body;
+    const { ImageId,productName,
+      description,
+      brand,
+      model,
+      price,
+      color,
+      motorType,
+      power,
+      placeNumber,
+      status,
+      type} = req.body;
 
     const carData = await prisma.car.create({
-        data: car,
+        data:{
+          imageId : ImageId,
+          productName : productName,
+          description : description,
+          brand : brand,
+          model : model,
+          price : price,
+          color : color,
+          motorType : motorType,
+          power : power,
+          placeNumber : placeNumber,
+          status : status,
+          type : type
+        },
     });
     return res.json(carData);
 }
@@ -56,16 +69,39 @@ export const deleteCar = async (req: Request, res: Response) => {
 
 export const updateCar = async (req: Request, res: Response) => {
     const carId = parseInt(req.params.id, 10);
-    const car = req.body;
+    const {ImageId,productName,
+      description,
+      brand,
+      model,
+      price,
+      color,
+      motorType,
+      power,
+      placeNumber,
+      status,
+      type} = req.body;
     try {
       const updateCar = await prisma.car.update({
         where: {
           productId: carId,
         },
-        data: car
+        data: {
+          imageId : ImageId,
+          productName : productName,
+          description : description,
+          brand : brand,
+          model : model,
+          price : price,
+          color : color,
+          motorType : motorType,
+          power : power,
+          placeNumber : placeNumber,
+          status : status,
+          type : type
+        },
       });
   
-      res.json({ message: `Car with ID ${carId} updated successfully` });
+      res.json({ message: `Car with ID ${carId} updated successfully`, updateCar });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "An error occurred while updating the car" });
