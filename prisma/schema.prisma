@@ -9,49 +9,62 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
+model Brand {
+  id   Int    @id @default(autoincrement())
+  name String
+  car  Car[]
+}
+
+enum MotorType {
+  DIESEL
+  ELETRIC
+  GASOIL
+  OTHER
+}
+
 model Car {
-    productId Int @id @default(autoincrement())
-    image Images  @relation(fields: [imageId], references: [id])
-    imageId Int
-    productName String 
-    description String 
-    brand String 
-    model String 
-    price Float
-    color String 
-    motorType String 
-    power String 
-    placeNumber Int
-    status Boolean
-    type String 
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  model       String
+  price       Float
+  color       String
+  power       String
+  placeNumber Int
+  status      Boolean
+  type        String
+  motorType   MotorType
+  brandId     Int
+  brand       Brand     @relation(fields: [brandId], references: [id])
+  image       Images[]
 }
 
 model Images {
-    id Int @id @default(autoincrement()) 
-    productId Int 
-    url String 
-    car Car[]
+  id    Int    @id @default(autoincrement())
+  url   String
+  carId Int
+  car   Car[]
 }
 
 model Admin {
-    userAdminId Int @id @default(autoincrement())
-    email String  @unique
-    name String  
-    password String
-    urlImage String?
+  Id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String
+  password String
+  urlImage String?
 }
 
 model Appointment {
-    appointmentId Int @id @default(autoincrement())
-    username String 
-    firstname String  
-    email String 
-    contact String 
-    appointmentDate DateTime @default(now())
-    status Boolean
+  Id              Int      @id @default(autoincrement())
+  username        String
+  firstname       String
+  email           String
+  contact         String
+  appointmentDate DateTime @default(now())
+  status          Boolean
 }
