@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/app.ts",
+    "dev": "nodemon src/main.ts",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "build": "rm -rf dist && npx tsc",
     "start": "npm run build && node dist/main.js",
