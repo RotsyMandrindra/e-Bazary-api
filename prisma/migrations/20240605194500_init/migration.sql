@@ -55,7 +55,7 @@ CREATE TABLE "Appointment" (
     "email" TEXT NOT NULL,
     "contact" TEXT NOT NULL,
     "appointmentDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "status" BOOLEAN NOT NULL,
+    "status" TEXT NOT NULL,
 
     CONSTRAINT "Appointment_pkey" PRIMARY KEY ("Id")
 );

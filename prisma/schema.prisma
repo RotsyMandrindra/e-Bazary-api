@@ -66,5 +66,5 @@ model Appointment {
   email           String
   contact         String
   appointmentDate DateTime @default(now())
-  status          Boolean
+  status          String
 }
