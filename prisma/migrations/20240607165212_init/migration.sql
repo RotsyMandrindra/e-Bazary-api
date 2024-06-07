@@ -1,10 +1,14 @@
 -- CreateEnum
 CREATE TYPE "MotorType" AS ENUM ('DIESEL', 'ELETRIC', 'GASOIL', 'OTHER');
 
+-- CreateEnum
+CREATE TYPE "AppointmentType" AS ENUM ('PENDING', 'VALIDATE', 'REJECTED');
+
 -- CreateTable
 CREATE TABLE "Brand" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
+    "image" TEXT NOT NULL,
 
     CONSTRAINT "Brand_pkey" PRIMARY KEY ("id")
 );
@@ -55,7 +59,7 @@ CREATE TABLE "Appointment" (
     "email" TEXT NOT NULL,
     "contact" TEXT NOT NULL,
     "appointmentDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "status" TEXT NOT NULL,
+    "status" "AppointmentType" NOT NULL DEFAULT 'PENDING',
 
     CONSTRAINT "Appointment_pkey" PRIMARY KEY ("Id")
 );

@@ -15,9 +15,10 @@ datasource db {
 }
 
 model Brand {
-  id   Int    @id @default(autoincrement())
-  name String
-  car  Car[]
+  id    Int    @id @default(autoincrement())
+  name  String
+  image String
+  car   Car[]
 }
 
 enum MotorType {
@@ -25,6 +26,12 @@ enum MotorType {
   ELETRIC
   GASOIL
   OTHER
+}
+
+enum AppointmentType {
+  PENDING
+  VALIDATE
+  REJECTED
 }
 
 model Car {
@@ -60,11 +67,11 @@ model Admin {
 }
 
 model Appointment {
-  Id              Int      @id @default(autoincrement())
+  Id              Int             @id @default(autoincrement())
   username        String
   firstname       String
   email           String
   contact         String
-  appointmentDate DateTime @default(now())
-  status          String
+  appointmentDate DateTime        @default(now())
+  status          AppointmentType @default(PENDING)
 }
