@@ -9,3 +9,17 @@ INSERT INTO "Car" ("imageId","productName", "description", "brand", "model", "pr
 (1,'Mercedes-Benz Class A', 'Premium and comfortable.', 'Mercedes-Benz', 'Class A', 24900, 'Silver', 'Hybrid', '204 hp', 4, false, 'Sedan'),
 (1,'Ford Focus', 'Spacious and versatile.', 'Ford', 'Focus', 12990, 'Bronze', 'Gasoline', '120 hp', 5, true, 'Sedan'),
 (1,'Nissan Micra', 'Economical and practical.', 'Nissan', 'Micra', 7990, 'Orange', 'Hybrid', '110 hp', 5, true, 'Hatchback');
+
+
+
+
+
+
+
+
+
+INSERT INTO "Car" (productName, description, brand, model, price, color, motorType, power, placeNumber, status, type)
+VALUES
+('Tesla Model S', 'Electric car with autopilot', 'Tesla', 'Model S', 79999, 'Red', 'Electric', '762 hp', 5, true, 'Sedan'),
+('Ford Mustang', 'Classic American muscle car', 'Ford', 'Mustang GT', 55999, 'Blue', 'Gasoline', '450 hp', 4, true, 'Coupe'),
+('BMW X5', 'Luxury SUV with powerful engine', 'BMW', 'X5', 60999, 'Black', 'Diesel', '335 hp', 5, true, 'SUV');

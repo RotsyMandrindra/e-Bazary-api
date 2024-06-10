@@ -42,18 +42,18 @@ CREATE TABLE "Images" (
 
 -- CreateTable
 CREATE TABLE "Admin" (
-    "Id" SERIAL NOT NULL,
+    "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "urlImage" TEXT,
 
-    CONSTRAINT "Admin_pkey" PRIMARY KEY ("Id")
+    CONSTRAINT "Admin_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Appointment" (
-    "Id" SERIAL NOT NULL,
+    "id" SERIAL NOT NULL,
     "username" TEXT NOT NULL,
     "firstname" TEXT NOT NULL,
     "email" TEXT NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE "Appointment" (
     "appointmentDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "status" "AppointmentType" NOT NULL DEFAULT 'PENDING',
 
-    CONSTRAINT "Appointment_pkey" PRIMARY KEY ("Id")
+    CONSTRAINT "Appointment_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable

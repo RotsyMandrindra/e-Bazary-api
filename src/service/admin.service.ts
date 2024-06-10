@@ -10,20 +10,20 @@ export const adminService = {
   getById: (id: string): Promise<Admin | null> =>
     prismaClient.admin.findUnique({
       where: {
-        Id: parseInt(id),
+        id: parseInt(id),
       },
     }),
   update: (id: string, admin: Admin): Promise<Admin> =>
     prismaClient.admin.update({
       where: {
-        Id: parseInt(id),
+        id: parseInt(id),
       },
       data: admin,
     }),
   delete: (id: string): Promise<Admin> =>
     prismaClient.admin.delete({
       where: {
-        Id: parseInt(id),
+        id: parseInt(id),
       },
     }),
 };

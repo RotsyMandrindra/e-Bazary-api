@@ -11,20 +11,20 @@ export const appointmentService = {
   getById: (id: string): Promise<Appointment | null> =>
     prismaClient.appointment.findUnique({
       where: {
-        Id: parseInt(id),
+        id: parseInt(id),
       },
     }),
   update: (id: string, appointment: Appointment): Promise<Appointment> =>
     prismaClient.appointment.update({
       where: {
-        Id: parseInt(id),
+        id: parseInt(id),
       },
       data: appointment,
     }),
   delete: (id: string): Promise<Appointment> =>
     prismaClient.appointment.delete({
       where: {
-        Id: parseInt(id),
+        id: parseInt(id),
       },
     }),
 };
